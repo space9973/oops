@@ -10,6 +10,14 @@ public:
     string brand;
     int year;
     char *name;
+    static int count;
+
+    // static function
+    static void getcount()
+    {
+        cout << "static function called" << endl;
+        cout << count << endl;
+    }
     // default constructor
     car()
     {
@@ -42,7 +50,7 @@ public:
     void enginesstarted()
     {
         cout << brand << " engine started!" << endl;
-        }
+    }
 
     int getmodel()
     {
@@ -60,20 +68,38 @@ public:
             cout << "Wrong id" << endl;
         }
     }
+    // shallow copy
+    car(car &temp)
+    {
+        this->brand = temp.brand;
+        this->year = temp.year;
+        this->model = temp.model;
+        this->id = temp.id;
+    }
     void setName(char name[])
     {
         strcpy(this->name, name);
     }
+    ~car()
+    {
+        cout << "Destructor called" << endl;
+    }
 };
+int car::count = 5;
 int main()
 {
-    car c1("TATA", 1800, 4589, 1234);
-    c1.setmodel(8176, 1234);
-    char name[5] = "Ford";
-    c1.setName(name);
-    cout << "Brand: " << c1.brand << endl;
-    cout << "Year: " << c1.year << endl;
-    cout << "Modle: " << c1.getmodel() << endl;
+    car::getcount();
+    // car c1;
+
+    // car *c2 = new car;
+    // delete c2;
+    // car c1("TATA", 1800, 4589, 1234);
+    // car c2(c1);
+    // cout << "c1: " << c1.brand << endl;
+    // cout << "c2: " << c2.name << endl;
+    // c1.setName("Ford");
+    // cout << "c1: " << c1.brand << endl;
+    // cout << "c2: " << c2.name << endl;
     // car c1("TATA", 1800, 4589, 1234);
     // c1.enginesstarted();
     // // copy cosntructor
